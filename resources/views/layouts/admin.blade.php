@@ -345,9 +345,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-user"></i>Create User</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-bars"></i>View Users </a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-edit"></i>Edit</a></li>
+            <li><a href="{{route('admin.users.create')}}"><i class="fa fa-user"></i>Create User</a></li>
+            <li><a href="{{route('admin.users.index')}}"><i class="fa fa-bars"></i>View Users </a></li>
+            <li><a href="#"><i class="fa fa-edit"></i>Edit</a></li>
           </ul>
         </li>
        

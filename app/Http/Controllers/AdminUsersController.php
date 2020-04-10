@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\Photo;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -45,10 +46,26 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
        //return view('admin.users.index');
-       User::create($request->all());
+       //User::create($request->all());
 
-       return redirect('/admin/users');
+       //return redirect('/admin/users');
        //return $request->all();
+       $input = $request->all();
+
+       if($file = $request->file('photo_id')){
+           $name = time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+           //return "photo exist";
+
+          
+          
+       }
+       $input['password'] = bcrypt($request->password);
+       User::create($input);
+       return redirect('/admin/users');
     }
 
     /**
@@ -97,5 +114,8 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        User::findOrfail($id)->delete();
+        Session::flash('deleted_user','The user has been deleted');
+        return redirect('/admin/users');
     }
 }
