@@ -79,6 +79,11 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
+      @if(Session::has("deleted_user"))
+
+    <p class="bg-danger" style="padding:10px: ">{{session('deleted_user')}}</p>
+
+    @endif
       <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Table With Full Features</h3>
@@ -117,7 +122,7 @@
                   <td>{{$user->updated_at->diffForHumans()}}</td>
                   
                   <td><a href="{{route('admin.users.edit' , $user->id)}}" title="Edit"><button  style="width:80px;height:30px;background:#93268f;border:none;padding: 10px;" class="btn btn-primary btn-sm"><i class="fa fa-edit 2x " style="color:#fff;"></i></button></a></td>
-                  <td><a href="#" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
+                  <td><a href="{{route('admin.users.edit' , $user->id)}}" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
                 </tr>
                 @endforeach
             @endif
