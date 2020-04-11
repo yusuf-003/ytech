@@ -97,6 +97,8 @@
                   
                   <th>Date Created</th>
                   <th>Date Updated</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -105,14 +107,17 @@
                 <tr>
                   <td>{{$user->id}}</td>
                   
-                  <td><img  height='50px' src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" ></td>
-                  <td>{{$user->name}}</td>
+                  <td><img  height='50px' src="{{$user->photo ? $user->photo->file : '/images/noimage.jpg'}}" ></td>
+                  <td >{{$user->name}}</td>
                   <td>{{$user->email}}</td>
                   <td>{{$user->role->name}}</td>
                   <td>{{$user->is_active==1 ? 'Active' : 'Not Active'}}</td>
                   
                   <td>{{$user->created_at->diffForHumans()}}</td>
                   <td>{{$user->updated_at->diffForHumans()}}</td>
+                  
+                  <td><a href="{{route('admin.users.edit' , $user->id)}}" title="Edit"><button  style="width:80px;height:30px;background:#93268f;border:none;padding: 10px;" class="btn btn-primary btn-sm"><i class="fa fa-edit 2x " style="color:#fff;"></i></button></a></td>
+                  <td><a href="#" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
                 </tr>
                 @endforeach
             @endif
