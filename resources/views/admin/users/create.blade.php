@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Create User</h1>
+<h1>Create User</h1>
 <div class="row" style='margin: 5px auto'>
 <div class="col-sm-10">
 {!! Form::open(['method' =>'POST','action'=> 'AdminUsersController@store','style'=>'margin:20px','files' => true]) !!}

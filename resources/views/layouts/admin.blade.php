@@ -361,9 +361,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-pencil-square-o"></i>Create</a></li>
-            <li><a href="#"><i class="fa fa-server"></i>View Post</a></li>
-            <li><a href="#"><i class="fa fa-edit"></i>Edit</a></li>
+            <li><a href="{{route('admin.posts.create')}}"><i class="fa fa-pencil-square-o"></i>Create</a></li>
+            <li><a href="{{route('admin.posts.index')}}"><i class="fa fa-server"></i>View Post</a></li>
+           
           </ul>
         </li>
        
