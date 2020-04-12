@@ -24,11 +24,11 @@ class PostsCreateRequest extends Request
     public function rules()
     {
         return [
-            //
-            //'title' => "required",
-            //'category_id' => "required",
-            //'photo_id' => 'required',
-            //'body' => 'required'
+            
+            'title' => "required",
+            'category_id' => "required",
+            'photo_id' => 'required',
+            'body' => 'required'
         ];
     }
 }
