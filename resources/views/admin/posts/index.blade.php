@@ -35,7 +35,10 @@
                             <th>body</th>
                             <th>Date Created</th>
                             <th>Date Updated</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                             </tr>
+
                             </thead>
                             <tbody>
 
@@ -48,9 +51,12 @@
                             <td>{{$post->user->name}}</td>
                             <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
                             <td>{{$post->title}}</td>
-                            <td>{{$post->body}}</td>
+                            <td>{{Str_limit($post->body, 30)}}</td>
                             <td>{{$post->created_at->diffForHumans()}}</td>
                             <td>{{$post->updated_at->diffForHumans()}}</td>
+                            <td><a href="{{route('admin.posts.edit' , $post->id)}}" title="Edit"><button  style="width:80px;height:30px;background:#93268f;border:none;padding: 10px;" class="btn btn-primary btn-sm"><i class="fa fa-edit 2x " style="color:#fff;"></i></button></a></td>
+                             <td><a href="{{route('admin.posts.edit' , $post->id)}}" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
+                            </tr>
                       
                             </tr>
                                 @endforeach
@@ -66,7 +72,9 @@
                             <th>body</th>
                             <th>Date Created</th>
                             <th>Date Updated</th>
-                            </tr>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            
                             </tfoot>
                         </table>
                     </div>
