@@ -41,8 +41,17 @@
     
     <div class="form-group">
         
-        {!! Form::submit('Update Post',['class'=>'btn btn-primary'])!!}
+        {!! Form::submit('Update Post',['class'=>'btn btn-primary col-sm-6'])!!}
     </div>
+{!! Form::close() !!}
+
+{!! Form::open(['method'=>'DELETE','action' => ['AdminPostsController@destroy', $post->id]]) !!}
+
+<div class="form-group" style="margin-top:-45px;">
+
+    {!! Form::Submit('Delete  User', ['class'=>"btn btn-danger col-sm-6 pull-right"]) !!}
+</div>
+
 {!! Form::close() !!}
 
  <div class="row" style="padding:20px"> @include('inc.errorMsg')</div>

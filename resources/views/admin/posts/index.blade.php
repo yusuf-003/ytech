@@ -22,15 +22,20 @@
                 <div class="box-header">
                 <h3 class="box-title">Hover Data Table</h3>
                 </div>
-                            
+                @if(Session::has("deleted_post"))
+
+<p class="bg-danger" style="padding:10px: ">{{session('deleted_post')}}</p>
+
+@endif
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                             <th>id</th>
+                            <th>photo</th>
                             <th>User</th>
                             <th>category</th>
-                            <th>photo</th>
+                            
                             <th>Title</th>
                             <th>body</th>
                             <th>Date Created</th>
@@ -65,9 +70,10 @@
                             <tfoot>
                            <tr>
                             <th>id</th>
+                            <th>photo</th>
                             <th>User</th>
                             <th>category</th>
-                            <th>photo</th>
+                            
                             <th>Title</th>
                             <th>body</th>
                             <th>Date Created</th>
