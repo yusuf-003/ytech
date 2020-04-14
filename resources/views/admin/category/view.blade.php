@@ -1,4 +1,5 @@
 
+
 @extends('layouts.admin')
 @section('content')
    
@@ -16,33 +17,8 @@
 
 <section class="content">
     <div class="row">
-        <div class="col-sm-6">
-            <div class="box">
-                <div class="box-header">
-                <h3 class="box-title">Create</h3>
-                </div>
-        
-                    <div class="box-body">
-                            {!! Form::open(['method' =>'POST','action'=> 'AdminCategoriesController@store','style'=>' padding:20px','files' => true]) !!}
-                                
-                                <div class="form-group">
-                                    {!! Form::label('name','Name')!!}
-                                    {!! Form::text('name',null,['class'=>'form-control'])!!}
-                                </div>
-                                
-                                <div class="form-group">
-                                    
-                                    {!! Form::submit('Create Category',['class'=>'btn btn-primary'])!!}
-                                </div>
-                            {!! Form::close() !!}
 
-                            @include('inc.errorMsg')
-
-                    </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="box">
                 <div class="box-header">
                 <h3 class="box-title">Display</h3>

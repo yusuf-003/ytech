@@ -363,10 +363,21 @@
           <ul class="treeview-menu">
             <li><a href="{{route('admin.posts.create')}}"><i class="fa fa-pencil-square-o"></i>Create</a></li>
             <li><a href="{{route('admin.posts.index')}}"><i class="fa fa-server"></i>View Post</a></li>
-           
           </ul>
         </li>
-       
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder-open"></i>
+            <span>Manage Category</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{route('admin.category.index')}}"><i class="fa fa-folder-o"></i>Create Category</a></li>
+          </ul>
+        </li>
 
         
 

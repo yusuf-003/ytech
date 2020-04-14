@@ -16,7 +16,7 @@ class AddPhotoIdToUsers extends Migration
             //
             $table->string('photo_id');
             $table->string('file');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

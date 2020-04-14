@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
+use Illuminate\Support\Facades\Storage;
 
 class AdminUsersController extends Controller
 {
@@ -22,7 +23,8 @@ class AdminUsersController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        //$users = User::all();
+        $users =User::orderBy('created_at', 'DESC')->get();
         return view('admin.users.index',compact('users'));
     }
 
