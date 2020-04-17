@@ -9,6 +9,7 @@ use App\Photo;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AdminMediaController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminMediaController extends Controller
 
     public function index(){
 
-        $photos = Photo::all();
+        $photos = Photo::paginate(5);
 
         return view('admin.media.index',compact('photos'));
     }

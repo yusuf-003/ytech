@@ -71,16 +71,20 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              
-              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+            
+              <img src="{{ Auth::user()->photo->file }}" class="user-image" alt="User Image">
+           
               <span class="hidden-xs">{{ Auth::user()->name }} </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+             
+                <img src="{{ Auth::user()->photo->file }}" class="img-circle" alt="User Image">
 
                 <p>
+
+               
                 {{ Auth::user()->name }} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
@@ -104,7 +108,8 @@
 
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+               
+                  <a href="{{route('admin.profile.edit',Auth::user()->id)}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                 
@@ -128,7 +133,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+           <img src="{{ Auth::user()->photo->file }}" class="img-circle" alt="User Image">
           
         </div>
         <div class="pull-left info">

@@ -78,6 +78,8 @@
 
                             </tr>
                                 @endforeach
+
+                                {{$categories->links()}}
                             @endif
                             </tbody>
                                                         <tfoot>

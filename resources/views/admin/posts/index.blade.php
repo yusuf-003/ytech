@@ -65,6 +65,7 @@
                       
                             </tr>
                                 @endforeach
+                                {{$posts->links()}}
                             @endif
                             </tbody>
                             <tfoot>

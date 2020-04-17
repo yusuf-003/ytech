@@ -24,7 +24,7 @@ class AdminUsersController extends Controller
     {
         //
         //$users = User::all();
-        $users =User::orderBy('created_at', 'DESC')->get();
+        $users =User::orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.users.index',compact('users'));
     }
 
@@ -100,7 +100,9 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
 
         return view('admin.users.edit',compact('user','roles'));
+       
     }
+   
 
     /**
      * Update the specified resource in storage.

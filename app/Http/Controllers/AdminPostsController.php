@@ -25,7 +25,7 @@ class AdminPostsController extends Controller
     {
         //
      
-        $posts = Post::orderBy('created_at', 'DESC')->get();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.posts.index', compact('posts'));
         
     }

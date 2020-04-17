@@ -64,6 +64,7 @@
                       
                             </tr>
                                 @endforeach
+                                {{$photos->links()}}
                             @endif
                             </tbody>
                             <tfoot>

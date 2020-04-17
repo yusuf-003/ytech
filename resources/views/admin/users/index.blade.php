@@ -125,6 +125,7 @@
                   <td><a href="{{route('admin.users.edit' , $user->id)}}" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
                 </tr>
                 @endforeach
+                {{$users->links()}}
             @endif
                 
                 </tfoot>

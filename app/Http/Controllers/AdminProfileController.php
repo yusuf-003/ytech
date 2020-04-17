@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Category;
-use App\Http\Requests\AdminCategoriesRequestController;
-class AdminCategoriesController extends Controller
+use App\User;
+use App\Role;
+use App\Photo;
+use App\Http\Requests\UsersEditRequest;
+
+class AdminProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +20,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::paginate(5);
-        return view('admin.category.index',compact('categories'));
-
-        
+        return "It work";
     }
 
     /**
@@ -31,8 +31,6 @@ class AdminCategoriesController extends Controller
     public function create()
     {
         //
-       
-
     }
 
     /**
@@ -41,14 +39,10 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminCategoriesRequestController $request)
+    public function store(Request $request)
     {
         //
-        //$categories =
-        Category::create($request->all());
-        return redirect('/admin/category');
-
-
+        
     }
 
     /**
@@ -70,11 +64,11 @@ class AdminCategoriesController extends Controller
      */
     public function edit($id)
     {
+        //
+        $roles = Role::lists('name','id')->all();
+        $user = User::findOrFail($id);
+        return view('admin.profile.edit',compact('user','roles'));
         
-        $category = Category::findOrFail($id);
-    return view('admin.category.edit',compact('category'));
-
-
     }
 
     /**
@@ -84,13 +78,32 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminCategoriesRequestController $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
         //
-       $category= Category::findOrFail($id);
-       $category->update($request->all());
+        $user = User::findOrFail($id);
 
-       return redirect('/admin/category');
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+
+       }else{
+           $input = $request->all();
+       }
+
+        $input = $request->all();
+        if($file = $request->file('photo_id')){
+
+            $name= time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+       
+        $input['password'] = bcrypt($request->password);
+        $user->update($input);
+        //return $request->all();
+        return redirect('/admin/users');
+
     }
 
     /**
@@ -102,9 +115,5 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
-        Category::findOrFail($id)->delete();
-        return redirect('/admin/category');
-        //Category::flash('deleted_post','The post has been deleted');
-        //return redirect('/admin/posts');
     }
 }
