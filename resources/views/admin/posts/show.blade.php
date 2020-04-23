@@ -16,30 +16,34 @@
     <section class="content">
     <div class="row">
         <div class="col-xs-12">
+
+        
             <!-- Post -->
             <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="{{$posts->user->photo ? $posts->user->photo->file : '/images/noimage.jpg'}}" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="{{$post->user->photo ? $post->user->photo->file : '/images/noimage.jpg'}}" alt="User Image">
                         <span class="username">
-                          <a href="#">{{$posts->user->name}}</a>
+                          <a href="#">{{$post->user->name}}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                    <span class="description">{{$posts->created_at->diffForHumans()}}</span>
+                    <span class="description">{{$post->created_at->diffForHumans()}}</span>
                   </div>
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="{{$posts->photo ? $posts->photo->file : '/images/noimage.jpg'}}" alt="Photo">
+                      <img class="img-responsive" src="{{$post->photo ? $post->photo->file : '/images/noimage.jpg'}}" alt="Photo">
+ 
+                     <span style="color:#eee;"> {{$user = Auth::user()->id}} </span>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
-                      <h2>{{$posts->title}}</h2>
-                      <small>{{$posts->category ? $posts->category->name : 'Uncategorized'}}</small>
+                      <h2>{{$post->title}}</h2>
+                      <small>{{$post->category ? $post->category->name : 'Uncategorized'}}</small>
                       <br>
                       <br>
                       <br>
                       <p>
-                      {{$posts->body}}
+                      {{$post->body}}
                       </p>
 
                     </div>
@@ -48,46 +52,115 @@
                   <!-- /.row -->
 
                   <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                   <!-- <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    -->
                     </li>
                     <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> {{$post->comments->count()}}
+                        </a></li>
                   </ul>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-
+                
                   
+            
+                
+                    
+                    <div class="card">
+                        <div class='card-block'>
 
-                    <br>
-                  <div class="timeline-item">
-                  <a class="btn btn-warning btn-flat btn-xs">View previous comment</a>
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+                        <form method = 'POST' action="/posts/{{$post->id}}/{{$user}}/comments">
+                          {{csrf_field()}}
+                          <div class="form-group green-border-focus">
+                          
+                          <textarea  name='body'  placeholder='your comment here' class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                          </div>
 
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                          <div class='form-group'>
+                            <button name='submit'  class= 'btn btn-primary'>Add Comment
+                            </button>
+                          </div>
+                        </form>
+                        </div>
 
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        
-                      </div>
                     </div>
+
+
+                    <div  class="row" style=""> @include('inc.errorMsg')</div>
+                    <br>
+
+                    @if(Session::has("deleted_comment"))
+
+                    <p class="bg-danger" style="padding:10px: ">{{session('deleted_comment')}}</p>
+
+                    @endif
+
+             <a class="btn btn-warning btn-flat btn-xs">previous comment</a><br><br>
+             @if(count($post->comments) > 0)
+                @foreach($post->comments as $comment)
+
+             <div class="box-body chat" id="chat-box" style='border:1px solid #ccc;'>
+              <!-- chat item -->
+              <div class="item">
+                <img src="{{$comment->user->photo ? $comment->user->photo->file : '/images/noimage.jpg'}}" alt="user image" class="online">
+
+                <p class="message">
+                  <a href="#" class="name">
+                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}}</small>
+                    {{$comment->user->name}}
+                    <br>
+                    <small style="color:#aaa;">{{$comment->user->role->name}}</small>
+                  </a>
+                  {{$comment->body}}
+                 
+                </p>
+                
+              </div>
+              {!! Form::open(['method'=>'DELETE','action' => ['AdminCommentController@destroy', $comment->id]]) !!}
+
+              
+
+              {!! Form::Submit('Delete ', ['class'=>"btn btn-danger "]) !!}
+
+
+              {!! Form::close() !!}
+              
+            </div>
+
+                   
+
+            </br>
+           
+           
+                     
+
+
+            <!-- /.chat -->
+            <!--
+            <div class="box-footer">
+              <div class="input-group">
+                <input class="form-control" placeholder="Type message...">
+
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
                 </div>
+              </div>
+            </div>
+          </div>
+           -->
+          
+          @endforeach
+
+
+          {{ $commentPaginator->links() }}
+
+          @else
+        <p>No comment Found</p>
+        @endif
+               
         </div>
+        
     </div>
+   
 </section>    
 
 
