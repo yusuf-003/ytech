@@ -72,15 +72,16 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             
-              <img src="{{ Auth::user()->photo->file }}" class="user-image" alt="User Image">
+              <img src="{{ Auth::user()->photo ? Auth::user()->photo->file :'/images/noimage.jpg'}}" class="user-image" alt="User Image">
            
               <span class="hidden-xs">{{ Auth::user()->name }} </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
+
              
-                <img src="{{ Auth::user()->photo->file }}" class="img-circle" alt="User Image">
+                <img src="{{ Auth::user()->photo ? Auth::user()->photo->file :'/images/noimage.jpg'}}" class="img-circle" alt="User Image">
 
                 <p>
 
@@ -109,7 +110,7 @@
               <li class="user-footer">
                 <div class="pull-left">
                
-                  <a href="{{route('admin.profile.edit',Auth::user()->id)}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profile/{{Auth::user()->id}}/edit" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                 
@@ -133,11 +134,12 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-           <img src="{{ Auth::user()->photo->file }}" class="img-circle" alt="User Image">
+           <img src="{{ Auth::user()->photo ? Auth::user()->photo->file :'/images/noimage.jpg'}}" class="img-circle" alt="User Image">
           
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }} </p>
+          <P style="color:black">{{$Role= Auth::user()->role->id}}</P>
          
         </div>
       </div>
@@ -153,9 +155,11 @@
       </form>
       /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
+
+      @if ($Role == 1)
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        
+
+        <li class="header">ADMIN MAIN NAVIGATION</li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
@@ -211,18 +215,36 @@
           <li><a href="{{route('admin.media.create')}}"><i class="fa fa-picture-o"></i>Upload</a></li>
           </ul>
         </li>
-
-       
-        
-       
-        
-        
-  
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+     
       </ul>
+     
+      @else
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">SUBSCRIBER MAIN NAVIGATION</li>
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-newspaper-o"></i>
+            <span>Manage Post</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/author/posts"><i class="fa fa-pencil-square-o"></i>Create</a></li>
+            <li><a href="/author/posts"><i class="fa fa-server"></i>View Post</a></li>
+            
+          </ul>
+        </li>
+
+  
+        <li class="header">Others </li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        
+      </ul>
+      @endif
     </section>
     <!-- /.sidebar -->
   </aside>

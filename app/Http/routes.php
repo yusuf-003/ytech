@@ -33,12 +33,16 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('admin/category','AdminCategoriesController');
     Route::resource('admin/media','AdminMediaController');
     Route::resource('admin/profile','AdminProfileController');
-    Route::resource('admin/posts/commentsDisplay','AdminCommentController');
-   
+  
     
 });
-
+Route::resource('/profile','ProfileController');
 Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
+
+
+Route::get('/author/posts/','AuthorPostsController@index');
+Route::get('/author/posts/create','AuthorPostsController@create');
+
 
 
 
