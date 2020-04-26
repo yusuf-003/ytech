@@ -233,8 +233,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/author/posts"><i class="fa fa-pencil-square-o"></i>Create</a></li>
-            <li><a href="/author/posts"><i class="fa fa-server"></i>View Post</a></li>
+            <li><a href="{{route('author.posts.create')}}"><i class="fa fa-pencil-square-o"></i>Create</a></li>
+            <li><a href="{{route('author.posts.index')}}"><i class="fa fa-server"></i>View Post</a></li>
             
           </ul>
         </li>

@@ -40,6 +40,12 @@ class Post extends Model
             return $this->hasMany('App\Comment');
         }
 
+        public function Author(){
+
+            return $this->belongsTo('App\Author');
+        }
+
+
 
 
 }

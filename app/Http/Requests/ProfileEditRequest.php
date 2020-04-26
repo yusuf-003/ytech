@@ -27,7 +27,6 @@ class ProfileEditRequest extends Request
             //
             'name'=> 'required',
             'email'=> 'required',
-            'file'=> 'required',
             'password'=> 'required',
 
         ];

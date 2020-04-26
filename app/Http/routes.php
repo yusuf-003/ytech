@@ -26,23 +26,30 @@ Route::get('/admin',function(){
 
 
 Route::group(['middleware'=>'admin'], function(){
-
-
     Route::resource('admin/users','AdminUsersController');
     Route::resource('admin/posts','AdminPostsController');
     Route::resource('admin/category','AdminCategoriesController');
     Route::resource('admin/media','AdminMediaController');
     Route::resource('admin/profile','AdminProfileController');
-  
-    
+
 });
+
 Route::resource('/profile','ProfileController');
 Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
 
 
-Route::get('/author/posts/','AuthorPostsController@index');
-Route::get('/author/posts/create','AuthorPostsController@create');
 
 
+//Route::group(['middleware'=>'author'], function(){
+    
+    //Route::resource('/author/posts/','AuthorPostsController@index');
+   // Route::resource('/author/posts/create','AuthorPostsController@create');
+//});
+
+Route::group(['middleware' => 'author'], function () {
+    //
+    Route::resource('author/posts','AuthorPostsController');
+    
+});
 
 
