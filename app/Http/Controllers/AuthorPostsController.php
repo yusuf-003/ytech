@@ -93,6 +93,7 @@ class AuthorPostsController extends Controller
     public function edit($id)
     {
         //
+        return "It work";
     }
 
     /**

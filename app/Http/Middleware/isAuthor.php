@@ -15,7 +15,7 @@ class isAuthor
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role->id == 2) {
+        if (Auth::user() &&  Auth::user()->role->id == 2 &&  Auth::user()->is_active == 1 ) {
             return $next($request);
      }
 

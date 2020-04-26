@@ -31,6 +31,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('admin/category','AdminCategoriesController');
     Route::resource('admin/media','AdminMediaController');
     Route::resource('admin/profile','AdminProfileController');
+    Route::resource('admin/show','AdminCommentController');
 
 });
 
@@ -39,12 +40,6 @@ Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
 
 
 
-
-//Route::group(['middleware'=>'author'], function(){
-    
-    //Route::resource('/author/posts/','AuthorPostsController@index');
-   // Route::resource('/author/posts/create','AuthorPostsController@create');
-//});
 
 Route::group(['middleware' => 'author'], function () {
     //

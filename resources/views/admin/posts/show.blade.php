@@ -13,7 +13,7 @@
       </ol>
     </section>
 
-    <section class="content">
+  <section class="content">
     <div class="row">
         <div class="col-xs-12">
 
@@ -60,108 +60,80 @@
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> {{$post->comments->count()}}
                         </a></li>
                   </ul>
-                
-                  
-            
-                
                     
-                    <div class="card">
-                        <div class='card-block'>
+                  <div class="card">
+                      <div class='card-block'>
 
                         <form method = 'POST' action="/posts/{{$post->id}}/{{$user}}/comments">
+
                           {{csrf_field()}}
                           <div class="form-group green-border-focus">
-                          
                           <textarea  name='body'  placeholder='your comment here' class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
                           </div>
-
                           <div class='form-group'>
                             <button name='submit'  class= 'btn btn-primary'>Add Comment
                             </button>
                           </div>
-                        </form>
-                        </div>
 
-                    </div>
+                        </form>
+
+                      </div>
+
+                  </div>
 
 
                     <div  class="row" style=""> @include('inc.errorMsg')</div>
                     <br>
 
-                    @if(Session::has("deleted_comment"))
+                    
 
+                            <a class="btn btn-warning btn-flat btn-xs">previous comment</a><br><br>
+                            @if(count($post->comments) > 0)
+                                @foreach($post->comments as $comment)
+
+                            <div class="box-body chat" id="chat-box" style='border:1px solid #ccc;'>
+                              <!-- chat item -->
+                             
+                              <div class="item">
+                                <img src="{{$comment->user->photo ? $comment->user->photo->file : '/images/noimage.jpg'}}" alt="user image" class="online">
+
+                                <p class="message">
+                                  
+                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}}</small>
+                                    {{$comment->user->name}}
+                                    <br>
+                                    <small style="color:#aaa;">{{$comment->user->role->name}}</small>
+                                   <br>
+                                  {{$comment->body}}
+                                
+                                </p>
+
+                                
+                              {!! Form::open(['method'=>'DELETE','action' => ['AdminCommentController@destroy', $comment->id]]) !!}
+                              <div class="form-group" style="margin-top:-45px;">
+                                  {!! Form::Submit('Delete  comment', ['class'=>"btn btn-danger  pull-right"]) !!}
+                              </div>
+                              {!! Form::close() !!}
+
+                            </div>
+              
+              <!--add delete button here -->
+
+
+                    
+              
+            </div>
+            @if(Session::has("deleted_comment"))
                     <p class="bg-danger" style="padding:10px: ">{{session('deleted_comment')}}</p>
-
-                    @endif
-
-             <a class="btn btn-warning btn-flat btn-xs">previous comment</a><br><br>
-             @if(count($post->comments) > 0)
-                @foreach($post->comments as $comment)
-
-             <div class="box-body chat" id="chat-box" style='border:1px solid #ccc;'>
-              <!-- chat item -->
-              <div class="item">
-                <img src="{{$comment->user->photo ? $comment->user->photo->file : '/images/noimage.jpg'}}" alt="user image" class="online">
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}}</small>
-                    {{$comment->user->name}}
-                    <br>
-                    <small style="color:#aaa;">{{$comment->user->role->name}}</small>
-                  </a>
-                  {{$comment->body}}
-                 
-                </p>
-                
-              </div>
-              {!! Form::open(['method'=>'DELETE','action' => ['AdminCommentController@destroy', $comment->id]]) !!}
-
-              
-
-              {!! Form::Submit('Delete ', ['class'=>"btn btn-danger "]) !!}
-
-
-              {!! Form::close() !!}
-              
-            </div>
-
-                   
-
+                     @endif
             </br>
-           
-           
-                     
-
-
-            <!-- /.chat -->
-            <!--
-            <div class="box-footer">
-              <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-           -->
-          
-          @endforeach
-
-
-          {{ $commentPaginator->links() }}
-
-          @else
-        <p>No comment Found</p>
-        @endif
-               
+              @endforeach
+              {{ $commentPaginator->links() }}
+              @else
+            <p>No comment Found</p>
+            @endif
         </div>
         
     </div>
-   
-</section>    
-
-
-    @endsection
+  </section>    
+@endsection
