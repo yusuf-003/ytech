@@ -35,7 +35,7 @@
     
     <div class="form-group">
         {!! Form::label('body','Description')!!}
-        {!! Form::textarea('body',null,['class'=>'form-control','placehoder'=>'your description here...'])!!}
+        {!! Form::textarea('body',null,['id'=>'article-ckeditor','class'=>'form-control','placehoder'=>'your description here...'])!!}
     </div>
   
     

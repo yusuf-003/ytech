@@ -45,6 +45,10 @@ class Post extends Model
             return $this->belongsTo('App\Author');
         }
 
+        public function Message(){
+
+            return $this->belongsTo('App\Message');
+        }
 
 
 

@@ -39,7 +39,7 @@ Route::resource('/profile','ProfileController');
 Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
 
 
-
+// rout for Author
 
 Route::group(['middleware' => 'author'], function () {
     //
@@ -47,4 +47,11 @@ Route::group(['middleware' => 'author'], function () {
     
 });
 
+// route for Subscriber
+
+Route::group(['middleware' => 'subscriber'], function () {
+    //
+    Route::resource('subscriber/posts','SubscriberController');
+    
+});
 
