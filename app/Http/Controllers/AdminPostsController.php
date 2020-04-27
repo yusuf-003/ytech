@@ -82,7 +82,7 @@ class AdminPostsController extends Controller
       
         
         $post= Post::find($id);
-        $commentPaginator = $post->comments()->paginate(5);
+        $commentPaginator = $post->comments()->orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.posts.show')->with(['post' => $post, 'commentPaginator' => $commentPaginator]);
 
     }

@@ -82,6 +82,11 @@ class AuthorPostsController extends Controller
     public function show($id)
     {
         //
+        $post= Post::find($id);
+        $commentPaginator = $post->comments()->orderBy('created_at', 'DESC')->paginate(5);
+        return view('author.posts.show')->with(['post' => $post, 'commentPaginator' => $commentPaginator]);
+
+
     }
 
     /**
@@ -93,7 +98,9 @@ class AuthorPostsController extends Controller
     public function edit($id)
     {
         //
-        return "It work";
+        $categories = Category::lists('name','id')->all();
+        $post = Post::findOrFail($id);
+        return view('author.posts.edit',compact('post','categories'));
     }
 
     /**
@@ -103,9 +110,24 @@ class AuthorPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsCreateRequest $request, $id)
     {
         //
+        $input = $request->all();
+        if($file = $request->file('photo_id')){
+
+            $name= time().$file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+
+        Auth::user()->posts()->whereId($id)->first()->update($input);
+       
+        //$input['password'] = bcrypt($request->password);
+        //$user->update($input);
+        //return $request->all();
+        return redirect('/author/posts');
     }
 
     /**
@@ -116,6 +138,15 @@ class AuthorPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrfail($id);
+        unlink(public_path() .$post->photo->file);
+
+        $post->delete();
+
+      
+        Session::flash('deleted_post','The post has been deleted');
+        return redirect('/author/posts');
     }
+        
+    
 }
