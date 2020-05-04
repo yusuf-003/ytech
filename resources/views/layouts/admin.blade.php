@@ -204,6 +204,20 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>Manage Mail</span>
+            <span class="pull-right-container">
+              <i class="fa  fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{route('admin.mail.index')}}"><i class="fa fa-server"></i>View Mail</a></li>
+          <li><a href=""><i class="fa fa-edit"></i>Compose</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-television"></i>
             <span>Manage Media</span>
             <span class="pull-right-container">
@@ -239,6 +253,18 @@
             
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>Manage Mail</span>
+            <span class="pull-right-container">
+              <i class="fa  fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{ url('/contact_us') }}"><i class="fa fa-edit"></i>Compose</a></li>
+          </ul>
+        </li>
 
   
         <li class="header">Others </li>
@@ -252,16 +278,44 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-newspaper-o"></i>
-            <span>Manage Profile</span>
+            <span>Manage Post</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
           <li><a href="{{route('subscriber.posts.index')}}"><i class="fa fa-server"></i>View Post</a></li>
-          <li><a href="{{route('subscriber.posts.create')}}"><i class="fa fa-envelope"></i>Sent EMail</a></li>
+            
+            
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i>
+            <span>Manage Account</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          
             <li><a href="/profile/{{Auth::user()->id}}/edit"><i class="fa fa-user"></i>Profile</a></li>
             
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-envelope"></i>
+            <span>Manage Mail</span>
+            <span class="pull-right-container">
+              <i class="fa  fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          
+          <li><a href="{{ url('/contact_us') }}"><i class="fa fa-edit"></i>Compose</a></li>
           </ul>
         </li>
 

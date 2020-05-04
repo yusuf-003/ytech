@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,17 +33,26 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('admin/media','AdminMediaController');
     Route::resource('admin/profile','AdminProfileController');
     Route::resource('admin/show','AdminCommentController');
+    Route::resource('/admin/mail','ContactUsController');
+   
+   
 
 });
 
+
 Route::resource('/profile','ProfileController');
 Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
+
+Route::get('contact_us', 'ContactUsController@getContact');
+Route::post('contact_us', 'ContactUsController@saveContact');
+
+
 
 
 // rout for Author
 
 Route::group(['middleware' => 'author'], function () {
-    //
+    
     Route::resource('author/posts','AuthorPostsController');
     
 });
@@ -52,6 +62,25 @@ Route::group(['middleware' => 'author'], function () {
 Route::group(['middleware' => 'subscriber'], function () {
     //
     Route::resource('subscriber/posts','SubscriberController');
+    //Route::resource('subscriber/message','SubscriberMessagesController');
     
 });
 
+//Route::get('/sendmail/{id}','ExcelController@sendEmail');
+//Route::get('/', function () {
+   // return view('welcome');
+
+   //$data= [
+   //'title'=>'When are you coming back',
+   //'content'=>'this laraval couse is craeted with a lot of decacation'
+  // ];
+
+   // Mail::send('mail.test',$data, function($message){
+
+
+         //  $message->to('yaliyu003@gmail.com','Yusuf')->subject('Hello student hope your doing well');
+   
+  //  });
+
+
+//});

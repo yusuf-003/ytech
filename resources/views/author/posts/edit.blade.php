@@ -53,7 +53,8 @@
 </div>
 
 {!! Form::close() !!}
-
+<br>
+<br>
  <div class="row" style="padding:20px"> @include('inc.errorMsg')</div>
     @endsection
 

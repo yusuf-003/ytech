@@ -5,6 +5,7 @@ use App\User;
 use App\Role;
 use App\Photo;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -157,4 +158,6 @@ class AdminUsersController extends Controller
        Session::flash('deleted_user','The user has been deleted');
         return redirect('/admin/users');
     }
+
+   
 }

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -31,4 +32,6 @@ class HomeController extends Controller
 
         return view('profile');
     }
+
+   
 }
