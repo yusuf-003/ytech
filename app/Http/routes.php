@@ -34,6 +34,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('admin/profile','AdminProfileController');
     Route::resource('admin/show','AdminCommentController');
     Route::resource('/admin/mail','ContactUsController');
+    Route::resource('/admin/service','ServiceController');
    
    
 

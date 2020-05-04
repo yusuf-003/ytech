@@ -4,7 +4,7 @@
    
     <section class="content-header">
       <h1>
-      Categories
+      Service
         <small>advanced tables</small>
       </h1>
       <ol class="breadcrumb">
@@ -12,7 +12,7 @@
         <li><a href="#">Tables</a></li>
         <li class="active"></li>
       </ol>
-      <p class="bg-danger" style="padding:10px: ">{{session('deleted_category')}}</p>
+      <p class="bg-danger" style="padding:10px: ">{{session('deleted_service')}}</p>
     </section>
 
 <section class="content">
@@ -24,7 +24,7 @@
                 </div>
         
                     <div class="box-body">
-                            {!! Form::open(['method' =>'POST','action'=> 'AdminCategoriesController@store','style'=>' padding:20px','files' => true]) !!}
+                            {!! Form::open(['method' =>'POST','action'=> 'ServiceController@store','style'=>' padding:20px','files' => true]) !!}
                                 
                                 <div class="form-group">
                                     {!! Form::label('name','Name')!!}
@@ -33,7 +33,7 @@
                                 
                                 <div class="form-group">
                                     
-                                    {!! Form::submit('Create Category',['class'=>'btn btn-primary'])!!}
+                                    {!! Form::submit('Create Service',['class'=>'btn btn-primary'])!!}
                                 </div>
                             {!! Form::close() !!}
 
@@ -64,23 +64,23 @@
                             </thead>
                             <tbody>
 
-                            @if($categories)
+                            @if($services)
 
-                                @foreach($categories as $category)
+                                @foreach($services as $service)
                             <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->created_at ? $category->created_at->diffForHumans(): 'No date'}}</td>
-                            <td>{{$category->updated_at ? $category->updated_at->diffForHumans(): 'No date'}}</td>
+                            <td>{{$service->id}}</td>
+                            <td>{{$service->name}}</td>
+                            <td>{{$service->created_at ? $service->created_at->diffForHumans(): 'No date'}}</td>
+                            <td>{{$service->updated_at ? $service->updated_at->diffForHumans(): 'No date'}}</td>
 
-                            <td><a href="{{route('admin.category.edit' , $category->id)}}" title="Edit"><button  style="width:80px;height:30px;background:#93268f;border:none;padding: 10px;" class="btn btn-primary btn-sm"><i class="fa fa-edit 2x " style="color:#fff;"></i></button></a></td>
-                            <td><a href="{{route('admin.category.edit' , $category->id)}}" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
+                            <td><a href="{{route('admin.service.edit' , $service->id)}}" title="Edit"><button  style="width:80px;height:30px;background:#93268f;border:none;padding: 10px;" class="btn btn-primary btn-sm"><i class="fa fa-edit 2x " style="color:#fff;"></i></button></a></td>
+                            <td><a href="{{route('admin.service.edit' , $service->id)}}" title="Delete"><button  style="width:80px;height:30px;background:red;border:none;padding: 10px;" class="btn btn-danger btn-sm"><i class="fa fa-times 2x " style="color:#fff;"></i></button></a></td>
                             </tr>
 
                             </tr>
                                 @endforeach
 
-                                {{$categories->links()}}
+                                {{$services->links()}}
                             @endif
                             </tbody>
                                                         <tfoot>

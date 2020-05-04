@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Category;
-use App\Http\Requests\AdminCategoriesRequestController;
+use App\Http\Requests\ServiceRequest;
+use App\Service;
 use Illuminate\Support\Facades\Session;
-class AdminCategoriesController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,9 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::paginate(5);
-        return view('admin.category.index',compact('categories'));
-
-        
+        $services = Service::paginate(5);
+        return view('admin.service.index',compact('services'));
+     
     }
 
     /**
@@ -32,8 +31,6 @@ class AdminCategoriesController extends Controller
     public function create()
     {
         //
-       
-
     }
 
     /**
@@ -42,13 +39,10 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminCategoriesRequestController $request)
+    public function store(ServiceRequest $request)
     {
-        //
-        //$categories =
-        Category::create($request->all());
-        return redirect('/admin/category');
-
+        Service::create($request->all());
+        return redirect('/admin/service');
 
     }
 
@@ -71,11 +65,8 @@ class AdminCategoriesController extends Controller
      */
     public function edit($id)
     {
-        
-        $category = Category::findOrFail($id);
-        return view('admin.category.edit',compact('category'));
-
-
+        $service = Service::findOrFail($id);
+        return view('admin.service.edit',compact('service'));
     }
 
     /**
@@ -85,13 +76,12 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminCategoriesRequestController $request, $id)
+    public function update(ServiceRequest $request, $id)
     {
         //
-       $category= Category::findOrFail($id);
-       $category->update($request->all());
-
-       return redirect('/admin/category');
+        $service= Service::findOrFail($id);
+        $service->update($request->all());
+         return redirect('/admin/service');
     }
 
     /**
@@ -102,11 +92,8 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
-        Category::findOrFail($id)->delete();
-        Session::flash('deleted_category','The Category has been deleted');
-        return redirect('/admin/category');
-       
-        
+        Service::findOrFail($id)->delete();
+        Session::flash('deleted_service','The service has been deleted');
+        return redirect('/admin/service');
     }
 }

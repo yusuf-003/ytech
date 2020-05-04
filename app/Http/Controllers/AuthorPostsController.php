@@ -28,9 +28,7 @@ class AuthorPostsController extends Controller
         $user = Auth::user()->id;
         $posts = Post::where("user_id", "=", $user)->orderBy('created_at', 'DESC')->paginate(5);
         return view('author.posts.index', compact('posts'));
-       
-        
-        
+    
     }
 
     /**

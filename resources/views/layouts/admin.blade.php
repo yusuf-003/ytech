@@ -204,6 +204,32 @@
 
         <li class="treeview">
           <a href="#">
+            <i class=" fa fa-paper-plane-o"></i>
+            <span>Manage Service</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{route('admin.service.index')}}"><i class="fa fa-folder-o"></i>Create Service</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-briefcase"></i>
+            <span>Manage Portfolio</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{route('admin.category.index')}}"><i class="fa fa-folder-o"></i>Create Postfolio</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-envelope"></i>
             <span>Manage Mail</span>
             <span class="pull-right-container">
