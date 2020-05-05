@@ -177,6 +177,19 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-folder-open"></i>
+            <span>Manage Category</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu"> 
+          <li><a href="{{route('admin.category.index')}}"><i class="fa fa-folder-o"></i>Create Category</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-newspaper-o"></i>
             <span>Manage Post</span>
             <span class="pull-right-container">
@@ -189,18 +202,7 @@
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder-open"></i>
-            <span>Manage Category</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu"> 
-          <li><a href="{{route('admin.category.index')}}"><i class="fa fa-folder-o"></i>Create Category</a></li>
-          </ul>
-        </li>
+       
 
         <li class="treeview">
           <a href="#">
@@ -224,7 +226,8 @@
             </span>
           </a>
           <ul class="treeview-menu"> 
-          <li><a href="{{route('admin.category.index')}}"><i class="fa fa-folder-o"></i>Create Postfolio</a></li>
+          <li><a href="{{route('admin.portfolio.create')}}"><i class="fa fa-folder-o"></i>Create Portfolio</a></li>
+          <li><a href="{{route('admin.portfolio.index')}}"><i class="fa fa-server"></i>View Portpolio</a></li>
           </ul>
         </li>
 
