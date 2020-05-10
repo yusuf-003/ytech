@@ -35,10 +35,15 @@ class Post extends Model
             return $this->belongsTo('App\Category');
         }
 
-        public function comments(){
+        //public function comments(){
 
-            return $this->hasMany('App\Comment');
-        }
+           // return $this->hasMany('App\Comment');
+       // }
+
+        public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 
         public function Author(){
 

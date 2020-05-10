@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::auth();
@@ -45,6 +45,10 @@ Route::post('/posts/{post}/{user}/comments','AdminCommentController@store');
 
 Route::get('contact_us', 'ContactUsController@getContact');
 Route::post('contact_us', 'ContactUsController@saveContact');
+
+Route::resource('/','PageController@index');
+Route::resource('/blog-single','PageController');
+
 
 
 
