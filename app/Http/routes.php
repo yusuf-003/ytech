@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Input;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +90,15 @@ Route::group(['middleware' => 'subscriber'], function () {
 
 
 //});
+
+Route::get ( '/searchResult', function () {
+    return view ( '/searchResult' );
+} );
+Route::any ( '/searchResult', function () {
+    $q = Input::get ( 'q' );
+    $post = Post::where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'body', 'LIKE', '%' . $q . '%' )->get ();
+    if (count ( $post ) > 0)
+        return view ( 'searchResult' )->withDetails ( $post )->withQuery ( $q );
+    else
+        return view ( 'searchResult' )->withMessage ( 'No Details found. Try to search again !' );
+} );

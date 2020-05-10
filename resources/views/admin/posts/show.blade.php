@@ -83,6 +83,9 @@
 
 
                     <div  class="row" style=""> @include('inc.errorMsg')</div>
+                    @if(Session::has("deleted_comment"))
+                    <p class="bg-danger" style="padding:10px: ">{{session('deleted_comment')}}</p>
+                     @endif
                     <br>
 
                     
@@ -121,11 +124,9 @@
 
 
                     
-              
+             
             </div>
-            @if(Session::has("deleted_comment"))
-                    <p class="bg-danger" style="padding:10px: ">{{session('deleted_comment')}}</p>
-                     @endif
+            
             </br>
               @endforeach
               {{ $commentPaginator->links() }}

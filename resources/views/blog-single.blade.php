@@ -26,6 +26,7 @@
   </div>
   <!--/ Intro Skew End /-->
 
+
   <!--/ Section Blog-Single Star /-->
   <section class="blog-wrapper sect-pt4" id="blog">
     <div class="container">
@@ -70,10 +71,10 @@
 
                           {{csrf_field()}}
                           <div class="form-group green-border-focus">
-                          <textarea  name='body'  placeholder='your comment here' class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                          <textarea  name='body' placeholder='your comment here' class="form-control" id="exampleFormControlTextarea5" rows="3" required></textarea>
                           </div>
                           <div class='form-group'>
-                            <button name='submit'  class= 'btn btn-primary btnD '>Add Comment
+                            <button name='submit'  class= 'btn  btnD '>Add Comment
                             </button>
                           </div>
 
@@ -95,7 +96,7 @@
                   <p>
                   {{$comment->body}}
                   </p>
-                  <a href="3">Reply</a>
+                  <!--  <a href="3">Reply</a> -->
                 </div>
               </li>
               @endforeach
@@ -114,11 +115,12 @@
           <div class="widget-sidebar sidebar-search">
             <h5 class="sidebar-title">Search</h5>
             <div class="sidebar-content">
-              <form>
+              <form action="/searchResult" method="POST" role="search">
+              {{ csrf_field() }}
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                  <input type="text" name="q" class="form-control" placeholder="Search for..." aria-label="Search for...">
                   <span class="input-group-btn">
-                    <button class="btn btn-secondary btn-search" type="button">
+                    <button  type="submit" class="btn btn-secondary btn-search" type="button">
                       <span class="ion-android-search"></span>
                     </button>
                   </span>
